@@ -9,7 +9,7 @@ class CountryModel with _$CountryModel {
     required String name,
     required String capital,
     required String flag,
-    String? code, // اختیاری
+    String? code, 
   }) = _CountryModel;
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => _$CountryModelFromJson(json);

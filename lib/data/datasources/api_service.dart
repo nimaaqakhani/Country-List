@@ -1,29 +1,26 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/data/models/country_model.dart';
+import 'api_service_interface.dart';
 
-class ApiService {
-  final Dio _dio = Dio();
+class ApiService implements ApiServiceInterface {
+  final Dio _dio;
+
+  ApiService(this._dio);
 
   static const String url =
       'https://raw.githubusercontent.com/PouriaMoradi021/countries-api/refs/heads/main/countries.json';
 
-  Future<List<CountryModel>> fetchCountries() async {
+  @override
+  Future<List<dynamic>> fetchData() async {
     try {
       final response = await _dio.get(url);
-
       print("📡 Status Code: ${response.statusCode}");
       print("📡 Raw Response Data: ${response.data}");
-
       if (response.statusCode == 200) {
-        // ✅ تبدیل response.data از String به JSON قابل پردازش
-        List<dynamic> data =
+        final List<dynamic> data =
             response.data is String ? jsonDecode(response.data) : response.data;
-
-        print("✅ تعداد کشورها: ${data.length}");
-
-        return data.map((json) => CountryModel.fromJson(json)).toList();
+        print("✅ تعداد آیتم‌ها: ${data.length}");
+        return data;
       } else {
         throw Exception('خطا در دریافت اطلاعات (${response.statusCode})');
       }

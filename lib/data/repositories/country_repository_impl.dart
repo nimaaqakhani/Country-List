@@ -10,7 +10,7 @@ class CountryRepositoryImpl implements CountryRepository {
 
   @override
   Future<List<Country>> getCountries() async {
-    final countryModels = await countryApi.fetchCountries(); // List<CountryModel>
-    return CountryMapper.toEntityList(countryModels); // List<Country>
+    final countryModels = await countryApi.fetchCountries();
+    return CountryMapper.toEntityList(countryModels);
   }
 }

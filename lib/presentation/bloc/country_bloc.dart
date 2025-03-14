@@ -1,19 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/domain/entities/country.dart';
 import 'package:flutter_application_1/domain/usecases/get_countries.dart';
-
-// Events
 abstract class CountryEvent {
   const CountryEvent();
 }
-
 class FetchCountries extends CountryEvent {}
 
 // States
 abstract class CountryState {
   const CountryState();
 }
-
 class CountryInitial extends CountryState {}
 
 class CountryLoading extends CountryState {}
@@ -29,8 +25,6 @@ class CountryError extends CountryState {
 
   const CountryError(this.message);
 }
-
-// BLoC
 class CountryBloc extends Bloc<CountryEvent, CountryState> {
   final GetCountries getCountries;
 
