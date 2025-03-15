@@ -5,9 +5,7 @@ import '../../domain/entities/country.dart';
 
 class CountryRepositoryImpl implements CountryRepository {
   final CountryApi countryApi;
-
   CountryRepositoryImpl(this.countryApi);
-
   @override
   Future<List<Country>> getCountries() async {
     final countryModels = await countryApi.fetchCountries();

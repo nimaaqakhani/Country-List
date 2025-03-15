@@ -1,5 +1,8 @@
 import 'package:flutter_application_1/domain/entities/country.dart';
+
 abstract class CountryState {}
+
+class CountryInitial extends CountryState {}
 class CountryLoading extends CountryState {}
 class CountryLoaded extends CountryState {
   final List<Country> countries;

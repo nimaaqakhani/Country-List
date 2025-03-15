@@ -10,7 +10,6 @@ class CountryMapper {
       code: model.code,
     );
   }
-
   static List<Country> toEntityList(List<CountryModel> models) {
     return models.map((model) => toEntity(model)).toList();
   }

@@ -1,33 +1,12 @@
+import 'package:flutter_application_1/presentation/bloc/country_event.dart';
+import 'package:flutter_application_1/presentation/bloc/country_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_application_1/domain/entities/country.dart';
 import 'package:flutter_application_1/domain/usecases/get_countries.dart';
-abstract class CountryEvent {
-  const CountryEvent();
-}
-class FetchCountries extends CountryEvent {}
-
-// States
-abstract class CountryState {
-  const CountryState();
-}
-class CountryInitial extends CountryState {}
-
-class CountryLoading extends CountryState {}
-
-class CountryLoaded extends CountryState {
-  final List<Country> countries;
-
-  const CountryLoaded(this.countries);
-}
-
-class CountryError extends CountryState {
-  final String message;
-
-  const CountryError(this.message);
-}
+import 'package:get_it/get_it.dart';
 class CountryBloc extends Bloc<CountryEvent, CountryState> {
   final GetCountries getCountries;
 
+  // در اینجا GetCountries از طریق DI تزریق می‌شود
   CountryBloc(this.getCountries) : super(CountryInitial()) {
     on<FetchCountries>((event, emit) async {
       emit(CountryLoading());

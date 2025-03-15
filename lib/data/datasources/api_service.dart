@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'api_service_interface.dart';
+import 'package:get_it/get_it.dart'; 
 
 class ApiService implements ApiServiceInterface {
   final Dio _dio;
 
-  ApiService(this._dio);
+  ApiService(Dio dio) : _dio = GetIt.instance<Dio>(); 
 
   static const String url =
       'https://raw.githubusercontent.com/PouriaMoradi021/countries-api/refs/heads/main/countries.json';

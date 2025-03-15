@@ -1,4 +1,3 @@
-
 abstract class CountryEvent {}
 
-class LoadCountriesEvent extends CountryEvent {}
+class FetchCountries extends CountryEvent {}

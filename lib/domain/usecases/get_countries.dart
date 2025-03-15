@@ -1,5 +1,6 @@
-import '../entities/country.dart';
+// lib/domain/usecases/get_countries.dart
 import '../repositories/country_repository.dart';
+import '../entities/country.dart';
 
 class GetCountries {
   final CountryRepository repository;
