@@ -1,16 +1,34 @@
-# flutter_application_1
 
-A new Flutter project.
+# Flutter Countries App
 
-## Getting Started
-  
-This project is a starting point for a Flutter application.
+A Flutter application that fetches and displays a list of countries with their details (name, capital, flag, and country code) from a remote API. This project follows a clean architecture pattern with BLoC for state management, dependency injection using `get_it`, and comprehensive unit tests.
 
-A few resources to get you started if this is your first Flutter project:
+## Table of Contents
+- [Features](#features)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Dependencies](#dependencies)
+- [Setup and Installation](#setup-and-installation)
+- [Running the App](#running-the-app)
+- [Running Tests](#running-tests)
+- [Contributing](#contributing)
+- [License](#license)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Features
+- Fetch a list of countries from a remote API.
+- Display country details including name, capital, flag, and code in a scrollable list.
+- Handle loading and error states with user-friendly UI feedback.
+- Retry functionality for failed API requests.
+- Clean architecture with separation of concerns.
+- Unit tests for data layer and dependency injection.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Architecture
+This project follows the **Clean Architecture** pattern, ensuring a clear separation of concerns:
+- **Presentation Layer**: Manages UI and state using the BLoC pattern (`flutter_bloc`).
+- **Domain Layer**: Contains business logic, use cases (e.g., `GetCountries`), and repository interfaces.
+- **Data Layer**: Handles data fetching from the remote API, mapping models, and repository implementations.
+
+State management is handled by `CountryBloc`, which processes events (`FetchCountries`) and emits states (`CountryLoading`, `CountryLoaded`, `CountryError`).
+
+Dependency injection is implemented using `get_it` to provide a clean and testable way to manage dependencies.
+
