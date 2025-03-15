@@ -3,9 +3,7 @@ import 'package:flutter_application_1/presentation/widgets/country_item.dart';
 
 class CountryList extends StatelessWidget {
   final List<dynamic> countries;
-
   const CountryList({super.key, required this.countries});
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

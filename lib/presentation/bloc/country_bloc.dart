@@ -5,8 +5,6 @@ import 'package:flutter_application_1/domain/usecases/get_countries.dart';
 import 'package:get_it/get_it.dart';
 class CountryBloc extends Bloc<CountryEvent, CountryState> {
   final GetCountries getCountries;
-
-  // در اینجا GetCountries از طریق DI تزریق می‌شود
   CountryBloc(this.getCountries) : super(CountryInitial()) {
     on<FetchCountries>((event, emit) async {
       emit(CountryLoading());

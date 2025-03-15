@@ -13,25 +13,45 @@ class CountryItem extends StatelessWidget {
       elevation: 4,
       child: ListTile(
         contentPadding: const EdgeInsets.all(12),
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            country.flag,
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return const Icon(Icons.error, size: 50, color: Colors.red);
-            },
-          ),
-        ),
-        title: Text(
-          country.name,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        ),
-        subtitle: Text(
-          'پایتخت: ${country.capital}',
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween, // فاصله‌گذاری مناسب بین آیتم‌ها
+          children: [
+           
+            // پرچم کشور در سمت راست
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                country.flag,
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.error, size: 50, color: Colors.red);
+                },
+              ),
+            ),
+             // ستون اطلاعات کشور (نام و پایتخت)
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    country.name, // نام کشور
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'پایتخت: ${country.capital}', // پایتخت کشور
+                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                       if (country.code != null) // کد کشور در صورت وجود
+                    Text(
+                      ' ${country.code} :کد',
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

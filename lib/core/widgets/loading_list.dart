@@ -3,7 +3,6 @@ import 'package:shimmer/shimmer.dart';
 
 class LoadingList extends StatelessWidget {
   const LoadingList({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
