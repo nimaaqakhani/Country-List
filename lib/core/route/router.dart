@@ -1,5 +1,5 @@
-import 'package:flutter_application_1/presentation/screens/country_list_screen.dart';
-import 'package:flutter_application_1/presentation/screens/splash_screen.dart';
+import 'package:flutter_application_1/features/GlobalCountries/presentation/screens/country_list_screen.dart';
+import 'package:flutter_application_1/features/splash/presentation/screen/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {

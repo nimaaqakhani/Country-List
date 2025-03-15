@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Di/injection.dart';
-import 'package:flutter_application_1/presentation/bloc/country_bloc.dart';
-import 'package:flutter_application_1/presentation/bloc/country_event.dart';
-import 'package:flutter_application_1/presentation/route/router.dart';
+import 'package:flutter_application_1/core/Di/injection.dart';
+import 'package:flutter_application_1/features/GlobalCountries/presentation/bloc/country_bloc.dart';
+import 'package:flutter_application_1/features/GlobalCountries/presentation/bloc/country_event.dart';
+import 'package:flutter_application_1/core/route/router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   Injection.init();

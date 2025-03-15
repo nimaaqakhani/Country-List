@@ -1,7 +1,7 @@
-import 'package:flutter_application_1/presentation/bloc/country_event.dart';
-import 'package:flutter_application_1/presentation/bloc/country_state.dart';
+import 'package:flutter_application_1/features/GlobalCountries/domain/usecases/get_countries.dart';
+import 'package:flutter_application_1/features/GlobalCountries/presentation/bloc/country_event.dart';
+import 'package:flutter_application_1/features/GlobalCountries/presentation/bloc/country_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_application_1/domain/usecases/get_countries.dart';
 import 'package:get_it/get_it.dart';
 
 class CountryBloc extends Bloc<CountryEvent, CountryState> {
@@ -9,6 +9,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
 
   CountryBloc(GetCountries getCountries)
       : getCountries = GetIt.instance<GetCountries>(),
+      
         super(CountryInitial()) {
     on<FetchCountries>((event, emit) async {
       emit(CountryLoading());

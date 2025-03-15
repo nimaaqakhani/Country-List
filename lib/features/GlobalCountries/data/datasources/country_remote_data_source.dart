@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/data/datasources/api_service.dart';
+import 'package:flutter_application_1/core/services/api_service.dart';
 import '../models/country_model.dart';
 import 'package:get_it/get_it.dart';
 

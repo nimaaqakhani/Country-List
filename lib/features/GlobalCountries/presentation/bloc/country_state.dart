@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/domain/entities/country.dart';
+import 'package:flutter_application_1/features/GlobalCountries/domain/entities/country.dart';
 
 abstract class CountryState {}
 

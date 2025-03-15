@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/data/datasources/api_service_interface.dart';
+import 'package:flutter_application_1/core/services/api_service_interface.dart';
 import 'package:get_it/get_it.dart';
 
 class ApiService implements ApiServiceInterface {
-  final Dio _dio = GetIt.instance<Dio>();  
+  final Dio _dio = GetIt.instance<Dio>();
   static const String url =
       'https://raw.githubusercontent.com/PouriaMoradi021/countries-api/refs/heads/main/countries.json';
 

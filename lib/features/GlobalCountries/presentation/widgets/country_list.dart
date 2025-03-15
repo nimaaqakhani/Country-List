@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/presentation/widgets/country_item.dart';
+import 'package:flutter_application_1/features/GlobalCountries/presentation/widgets/country_item.dart';
 
 class CountryList extends StatelessWidget {
   final List<dynamic> countries;
