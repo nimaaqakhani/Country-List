@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class CountryItem extends StatelessWidget {
   final dynamic country;
-
   const CountryItem({super.key, required this.country});
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -14,10 +12,8 @@ class CountryItem extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // فاصله‌گذاری مناسب بین آیتم‌ها
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-           
-            // پرچم کشور در سمت راست
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
@@ -30,24 +26,31 @@ class CountryItem extends StatelessWidget {
                 },
               ),
             ),
-             // ستون اطلاعات کشور (نام و پایتخت)
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    country.name, // نام کشور
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    'پایتخت: ${country.capital}', // پایتخت کشور
-                    style: const TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                       if (country.code != null) // کد کشور در صورت وجود
-                    Text(
-                      ' ${country.code} :کد',
-                      style: const TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
+                  Text(country.name,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'IRANSans',
+                        fontWeight: FontWeight.w900,
+                      )),
+                  Text('پایتخت: ${country.capital}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                        fontFamily: 'IRANSans',
+                        fontWeight: FontWeight.w500,
+                      )),
+                  if (country.code != null)
+                    Text(' ${country.code} :کد',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          fontFamily: 'IRANSans',
+                          fontWeight: FontWeight.w500,
+                        )),
                 ],
               ),
             ),

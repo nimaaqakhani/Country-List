@@ -5,9 +5,7 @@ import 'package:flutter_application_1/presentation/bloc/country_event.dart';
 
 class ErrorState extends StatelessWidget {
   final String message;
-
   const ErrorState({super.key, required this.message});
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -16,7 +14,8 @@ class ErrorState extends StatelessWidget {
         children: [
           const Icon(Icons.error_outline, size: 60, color: Colors.red),
           const SizedBox(height: 10),
-          Text(message, style: const TextStyle(fontSize: 16, color: Colors.red)),
+          Text(message,
+              style: const TextStyle(fontSize: 16, color: Colors.red)),
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
