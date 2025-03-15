@@ -1,78 +1,83 @@
+import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:flutter_application_1/core/constant/app_constant.dart';
+import 'package:flutter_application_1/core/services/api_service.dart';
+import 'package:get_it/get_it.dart';
+import 'package:test/test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
-// import 'package:flutter_application_1/features/GlobalCountries/data/datasources/api_service.dart';
-// import 'package:flutter_application_1/features/GlobalCountries/data/datasources/country_remote_data_source.dart';
-// import 'package:get_it/get_it.dart';
-// import 'package:test/test.dart';
-// import 'package:mockito/annotations.dart';
-// import 'package:mockito/mockito.dart';
+@GenerateMocks([Dio])
+import 'api_service_test.mocks.dart';
 
-// @GenerateMocks([ApiService])
-// import 'country_api_test.mocks.dart';
+void main() {
+  late ApiService apiService;
+  late MockDio mockDio;
 
-// void main() {
-//   late CountryApi countryApi;
-//   late MockApiService mockApiService;
+  setUp(() {
+    GetIt.instance.reset();
+    mockDio = MockDio();
+    GetIt.instance.registerSingleton<Dio>(mockDio);
+    apiService = ApiService();
+  });
 
-//   setUp(() {
-//     GetIt.instance.reset();
-//     mockApiService = MockApiService();
-//     GetIt.instance.registerSingleton<ApiService>(mockApiService as ApiService);
-//     countryApi = CountryApi(mockApiService as ApiService);
-//   });
+  group('ApiService Tests', () {
+    test('fetchData returns list of data on success', () async {
+      final mockData = [
+        {'name': 'Iran'},
+        {'name': 'USA'}
+      ];
+      when(mockDio.get(AppConstants.countriesUrl)).thenAnswer(
+        (_) async => Response(
+          data: mockData,
+          statusCode: 200,
+          requestOptions: RequestOptions(path: AppConstants.countriesUrl),
+        ),
+      );
 
-//   group('CountryApi Tests', () {
-//     test('fetchCountries returns list of CountryModel on success', () async {
-//       final mockData = [
-//         {'name': 'Iran', 'capital': 'Tehran', 'flag': '🇮🇷', 'code': 'IR'},
-//         {'name': 'USA', 'capital': 'Washington', 'flag': '🇺🇸', 'code': null},
-//       ];
-//       when(mockApiService.fetchData()).thenAnswer((_) async => mockData);
+      final result = await apiService.fetchData();
+      expect(result, equals(mockData));
+      verify(mockDio.get(AppConstants.countriesUrl)).called(1);
+    });
 
-//       final result = await countryApi.fetchCountries();
-//       expect(result, isA<List<CountryModel>>());
-//       expect(result.length, 2);
-//       expect(result[0].name, 'Iran');
-//       verify(mockApiService.fetchData()).called(1);
-//     });
+    test('fetchData throws exception on non-200 status', () async {
+      when(mockDio.get(AppConstants.countriesUrl)).thenAnswer(
+        (_) async => Response(
+          data: 'Not Found',
+          statusCode: 404,
+          requestOptions: RequestOptions(path: AppConstants.countriesUrl),
+        ),
+      );
 
-//     test('fetchCountries throws exception on failure', () async {
-//       when(mockApiService.fetchData()).thenThrow(Exception('API Error'));
+      expect(
+        () async => await apiService.fetchData(),
+        throwsA(
+          isA<Exception>().having(
+            (e) => e.toString(),
+            'message',
+            contains('${AppConstants.fetchDataError} (404)'),
+          ),
+        ),
+      );
+      verify(mockDio.get(AppConstants.countriesUrl)).called(1);
+    });
 
-//       expect(
-//         () async => await countryApi.fetchCountries(),
-//         throwsA(
-//           isA<Exception>().having(
-//             (e) => e.toString(),
-//             'message',
-//             contains('Failed to load countries'),
-//           ),
-//         ),
-//       );
-//       verify(mockApiService.fetchData()).called(1);
-//     });
-//   });
-// }
+    test('fetchData throws exception on network error', () async {
+      when(mockDio.get(AppConstants.countriesUrl)).thenThrow(DioException(
+        requestOptions: RequestOptions(path: AppConstants.countriesUrl),
+      ));
 
-// // فرض مدل برای تست
-// class CountryModel {
-//   final String name;
-//   final String capital;
-//   final String flag;
-//   final String? code;
-
-//   CountryModel({
-//     required this.name,
-//     required this.capital,
-//     required this.flag,
-//     this.code,
-//   });
-
-//   factory CountryModel.fromJson(Map<String, dynamic> json) {
-//     return CountryModel(
-//       name: json['name'] as String,
-//       capital: json['capital'] as String,
-//       flag: json['flag'] as String,
-//       code: json['code'] as String?,
-//     );
-//   }
-// }
+      expect(
+        () async => await apiService.fetchData(),
+        throwsA(
+          isA<Exception>().having(
+            (e) => e.toString(),
+            'message',
+            contains(AppConstants.networkError),
+          ),
+        ),
+      );
+      verify(mockDio.get(AppConstants.countriesUrl)).called(1);
+    });
+  });
+}

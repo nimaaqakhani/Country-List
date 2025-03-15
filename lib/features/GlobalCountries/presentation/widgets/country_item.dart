@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/constant/app_constant.dart';
 
 class CountryItem extends StatelessWidget {
   final dynamic country;
   const CountryItem({super.key, required this.country});
+
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 4,
+      margin: const EdgeInsets.symmetric(
+        vertical: AppConstants.verticalMargin,
+        horizontal: AppConstants.horizontalMargin,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppConstants.borderRadius),
+      ),
+      elevation: AppConstants.elevation,
       child: ListTile(
-        contentPadding: const EdgeInsets.all(12),
+        contentPadding: const EdgeInsets.all(AppConstants.defaultPadding),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -30,27 +37,33 @@ class CountryItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(country.name,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'IRANSans',
-                        fontWeight: FontWeight.w900,
-                      )),
-                  Text('پایتخت: ${country.capital}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontFamily: 'IRANSans',
-                        fontWeight: FontWeight.w500,
-                      )),
+                  Text(
+                    country.name,
+                    style: const TextStyle(
+                      fontSize: AppConstants.countryNameFontSize,
+                      fontFamily: AppConstants.fontFamilyIranSans,
+                      fontWeight: AppConstants.countryNameFontWeight,
+                    ),
+                  ),
+                  Text(
+                    '${AppConstants.capitalPrefix}${country.capital}',
+                    style: const TextStyle(
+                      fontSize: AppConstants.countryDetailFontSize,
+                      color: Colors.grey,
+                      fontFamily: AppConstants.fontFamilyIranSans,
+                      fontWeight: AppConstants.countryDetailFontWeight,
+                    ),
+                  ),
                   if (country.code != null)
-                    Text(' ${country.code} :کد',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          fontFamily: 'IRANSans',
-                          fontWeight: FontWeight.w500,
-                        )),
+                    Text(
+                      '${country.code}${AppConstants.codeSuffix}',
+                      style: const TextStyle(
+                        fontSize: AppConstants.countryDetailFontSize,
+                        color: Colors.grey,
+                        fontFamily: AppConstants.fontFamilyIranSans,
+                        fontWeight: AppConstants.countryDetailFontWeight,
+                      ),
+                    ),
                 ],
               ),
             ),

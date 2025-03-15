@@ -6,10 +6,8 @@ import 'package:get_it/get_it.dart';
 
 class CountryBloc extends Bloc<CountryEvent, CountryState> {
   final GetCountries getCountries;
-
   CountryBloc(GetCountries getCountries)
       : getCountries = GetIt.instance<GetCountries>(),
-      
         super(CountryInitial()) {
     on<FetchCountries>((event, emit) async {
       emit(CountryLoading());
