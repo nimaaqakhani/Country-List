@@ -18,11 +18,13 @@ class CountryListScreen extends StatelessWidget {
       create: (context) => CountryBloc(getIt<GetCountries>())..add(FetchCountries()),
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blueAccent,
           title: const Text(
             AppConstants.countryListTitle, 
             style: TextStyle(
               fontSize: AppConstants.appBarFontSize,
               fontWeight: AppConstants.appBarFontWeight,
+              fontFamily: AppConstants.fontFamilyIranSans
             ),
           ),
           centerTitle: true,

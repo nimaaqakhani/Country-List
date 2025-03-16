@@ -10,7 +10,12 @@ class AppConstants {
   static const String capitalPrefix = 'پایتخت: ';
   static const String codeSuffix = ' :کد';
   static const String fontFamilyIranSans = 'IRANSans';
-  static const double appBarFontSize = 20.0;
+  static const String splashWelcomeText = 'Welcome To My App'; 
+  static const double splashFontSize = 24.0; 
+  static const FontWeight splashFontWeight = FontWeight.bold; 
+  static const String homeRoute = '/home'; 
+  static const Duration splashDelay = Duration(seconds: 2); 
+  static const double appBarFontSize = 25.0;
   static const FontWeight appBarFontWeight = FontWeight.bold;
   static const double countryNameFontSize = 18.0;
   static const FontWeight countryNameFontWeight = FontWeight.w900;

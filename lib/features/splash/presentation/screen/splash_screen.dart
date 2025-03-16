@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/constant/app_constant.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -10,8 +12,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
-      context.go('/home');
+    Future.delayed(AppConstants.splashDelay, () {
+      context.go(AppConstants.homeRoute);
     });
   }
   @override
@@ -19,8 +21,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return const Scaffold(
       body: Center(
         child: Text(
-          'Welcome To My App',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          AppConstants.splashWelcomeText,
+          style: TextStyle(
+            fontSize: AppConstants.splashFontSize,
+            fontWeight: AppConstants.splashFontWeight,
+          ),
         ),
       ),
     );
