@@ -7,7 +7,6 @@ import 'package:flutter_application_1/features/GlobalCountries/presentation/bloc
 class ErrorState extends StatelessWidget {
   final String message;
   const ErrorState({super.key, required this.message});
-
   @override
   Widget build(BuildContext context) {
     return Center(

@@ -1,3 +1,8 @@
-abstract class CountryEvent {}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class FetchCountries extends CountryEvent {}
+part 'country_event.freezed.dart';
+
+@freezed
+class CountryEvent with _$CountryEvent {
+  const factory CountryEvent.fetchCountries() = FetchCountries;
+}

@@ -1,14 +1,11 @@
 import 'package:flutter_application_1/features/GlobalCountries/domain/entities/country.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'country_state.freezed.dart';
 
-abstract class CountryState {}
-
-class CountryInitial extends CountryState {}
-class CountryLoading extends CountryState {}
-class CountryLoaded extends CountryState {
-  final List<Country> countries;
-  CountryLoaded(this.countries);
-}
-class CountryError extends CountryState {
-  final String message;
-  CountryError(this.message);
+@freezed
+class CountryState with _$CountryState {
+  const factory CountryState.initial() = CountryInitial;
+  const factory CountryState.loading() = CountryLoading;
+  const factory CountryState.loaded(List<Country> countries) = CountryLoaded;
+  const factory CountryState.error(String message) = CountryError;
 }
