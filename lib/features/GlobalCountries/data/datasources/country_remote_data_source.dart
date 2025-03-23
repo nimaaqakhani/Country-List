@@ -1,10 +1,11 @@
 import 'package:flutter_application_1/core/services/api_service.dart';
-import '../models/country_model.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_application_1/features/GlobalCountries/data/models/country_model.dart';
+
 class CountryApi {
   final ApiService _apiService;
-  CountryApi(ApiService apiService)
-      : _apiService = GetIt.instance<ApiService>();
+
+  CountryApi(this._apiService);
+
   Future<List<CountryModel>> fetchCountries() async {
     try {
       final List<dynamic> data = await _apiService.fetchData();

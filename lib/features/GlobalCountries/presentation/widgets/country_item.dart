@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/features/GlobalCountries/domain/entities/country.dart';
+import 'package:flutter_application_1/features/GlobalCountries/data/models/country_model.dart';
 
 class CountryItem extends StatelessWidget {
-  final Country country;
+  final CountryModel country;
 
   const CountryItem({super.key, required this.country});
 
@@ -38,12 +38,12 @@ class CountryItem extends StatelessWidget {
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    'پایتخت: ${country.capital}',
+                    'Capital: ${country.capital}',
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                   if (country.code != null)
                     Text(
-                      ' ${country.code} :کد',
+                      'Code: ${country.code}',
                       style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                 ],

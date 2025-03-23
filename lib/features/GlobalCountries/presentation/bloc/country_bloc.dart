@@ -14,7 +14,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
         final countries = await getCountries();
         emit(CountryState.loaded(countries));
       } catch (e) {
-        emit(CountryState.error('خطا در دریافت کشورها: $e'));
+        emit(CountryState.error('Failed to fetch countries: $e'));
       }
     });
   }

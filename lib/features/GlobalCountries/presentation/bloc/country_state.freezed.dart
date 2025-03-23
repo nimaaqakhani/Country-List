@@ -20,7 +20,7 @@ mixin _$CountryState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loaded,
+    required TResult Function(List<CountryModel> countries) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$CountryState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Country> countries)? loaded,
+    TResult? Function(List<CountryModel> countries)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$CountryState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loaded,
+    TResult Function(List<CountryModel> countries)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$CountryInitialImpl implements CountryInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loaded,
+    required TResult Function(List<CountryModel> countries) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +137,7 @@ class _$CountryInitialImpl implements CountryInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Country> countries)? loaded,
+    TResult? Function(List<CountryModel> countries)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +148,7 @@ class _$CountryInitialImpl implements CountryInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loaded,
+    TResult Function(List<CountryModel> countries)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$CountryLoadingImpl implements CountryLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loaded,
+    required TResult Function(List<CountryModel> countries) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$CountryLoadingImpl implements CountryLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Country> countries)? loaded,
+    TResult? Function(List<CountryModel> countries)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$CountryLoadingImpl implements CountryLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loaded,
+    TResult Function(List<CountryModel> countries)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +320,7 @@ abstract class _$$CountryLoadedImplCopyWith<$Res> {
           _$CountryLoadedImpl value, $Res Function(_$CountryLoadedImpl) then) =
       __$$CountryLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Country> countries});
+  $Res call({List<CountryModel> countries});
 }
 
 /// @nodoc
@@ -340,7 +340,7 @@ class __$$CountryLoadedImplCopyWithImpl<$Res>
       null == countries
           ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
-              as List<Country>,
+              as List<CountryModel>,
     ));
   }
 }
@@ -348,12 +348,12 @@ class __$$CountryLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CountryLoadedImpl implements CountryLoaded {
-  const _$CountryLoadedImpl(final List<Country> countries)
+  const _$CountryLoadedImpl(final List<CountryModel> countries)
       : _countries = countries;
 
-  final List<Country> _countries;
+  final List<CountryModel> _countries;
   @override
-  List<Country> get countries {
+  List<CountryModel> get countries {
     if (_countries is EqualUnmodifiableListView) return _countries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countries);
@@ -388,7 +388,7 @@ class _$CountryLoadedImpl implements CountryLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loaded,
+    required TResult Function(List<CountryModel> countries) loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(countries);
@@ -399,7 +399,7 @@ class _$CountryLoadedImpl implements CountryLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Country> countries)? loaded,
+    TResult? Function(List<CountryModel> countries)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(countries);
@@ -410,7 +410,7 @@ class _$CountryLoadedImpl implements CountryLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loaded,
+    TResult Function(List<CountryModel> countries)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -459,10 +459,10 @@ class _$CountryLoadedImpl implements CountryLoaded {
 }
 
 abstract class CountryLoaded implements CountryState {
-  const factory CountryLoaded(final List<Country> countries) =
+  const factory CountryLoaded(final List<CountryModel> countries) =
       _$CountryLoadedImpl;
 
-  List<Country> get countries;
+  List<CountryModel> get countries;
   @JsonKey(ignore: true)
   _$$CountryLoadedImplCopyWith<_$CountryLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -534,7 +534,7 @@ class _$CountryErrorImpl implements CountryError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loaded,
+    required TResult Function(List<CountryModel> countries) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -545,7 +545,7 @@ class _$CountryErrorImpl implements CountryError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Country> countries)? loaded,
+    TResult? Function(List<CountryModel> countries)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -556,7 +556,7 @@ class _$CountryErrorImpl implements CountryError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loaded,
+    TResult Function(List<CountryModel> countries)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
