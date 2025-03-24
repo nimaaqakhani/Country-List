@@ -21,19 +21,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     try {
       debugPrint('AuthRemoteDataSource: Sending GET request to $_url');
       final response = await client.get(Uri.parse(_url)).timeout(
-        const Duration(seconds: 10),
-        onTimeout: () => throw TimeoutException('Request timed out'),
-      );
+            const Duration(seconds: 10),
+            onTimeout: () => throw TimeoutException('Request timed out'),
+          );
 
-      debugPrint('AuthRemoteDataSource: Response status: ${response.statusCode}');
+      debugPrint(
+          'AuthRemoteDataSource: Response status: ${response.statusCode}');
       if (response.statusCode == 200) {
         debugPrint('AuthRemoteDataSource: Response body: ${response.body}');
         final Map<String, dynamic> data = jsonDecode(response.body);
-        
+
         final List<dynamic> userList = data['users'] as List<dynamic>;
         debugPrint('AuthRemoteDataSource: Extracted users: $userList');
-        
-        return userList.map((json) => UserModel.fromJson(json as Map<String, dynamic>)).toList();
+
+        return userList
+            .map((json) => UserModel.fromJson(json as Map<String, dynamic>))
+            .toList();
       } else if (response.statusCode == 404) {
         throw Exception('File not found (404)');
       } else {
