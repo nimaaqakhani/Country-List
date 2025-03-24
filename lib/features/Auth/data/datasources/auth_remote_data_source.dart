@@ -1,52 +1,21 @@
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:flutter_application_1/core/services/asset_service.dart';
 import 'package:flutter_application_1/features/Auth/data/models/user_model.dart';
-import 'package:flutter/foundation.dart';
 
-abstract class AuthRemoteDataSource {
-  Future<List<UserModel>> fetchUsers();
-}
-
-class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  static const String _url =
-      'https://raw.githubusercontent.com/PouriaMoradi021/users-information/refs/heads/main/user-data.json';
-
-  final http.Client client;
-
-  AuthRemoteDataSourceImpl(this.client);
-
-  @override
-  Future<List<UserModel>> fetchUsers() async {
+class AuthApi {
+  final AssetService _assetService;
+  AuthApi(this._assetService);
+  Future<bool> login(String email, String password) async {
     try {
-      debugPrint('AuthRemoteDataSource: Sending GET request to $_url');
-      final response = await client.get(Uri.parse(_url)).timeout(
-            const Duration(seconds: 10),
-            onTimeout: () => throw TimeoutException('Request timed out'),
-          );
-
-      debugPrint(
-          'AuthRemoteDataSource: Response status: ${response.statusCode}');
-      if (response.statusCode == 200) {
-        debugPrint('AuthRemoteDataSource: Response body: ${response.body}');
-        final Map<String, dynamic> data = jsonDecode(response.body);
-
-        final List<dynamic> userList = data['users'] as List<dynamic>;
-        debugPrint('AuthRemoteDataSource: Extracted users: $userList');
-
-        return userList
-            .map((json) => UserModel.fromJson(json as Map<String, dynamic>))
-            .toList();
-      } else if (response.statusCode == 404) {
-        throw Exception('File not found (404)');
-      } else {
-        throw Exception('Failed to load users: ${response.statusCode}');
+      final List<dynamic> users = await _assetService.loadJsonData('assets/data/users.json');
+      for (var userJson in users) {
+        final user = UserModel.fromJson(userJson as Map<String, dynamic>);
+        if (user.email == email && user.password == password) {
+          return true;
+        }
       }
-    } on TimeoutException {
-      throw Exception('Network timeout. Please check your connection.');
+      return false;
     } catch (e) {
-      debugPrint('AuthRemoteDataSource: Error: $e');
-      throw Exception('Network error: $e');
+      throw Exception('Failed to login: $e');
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 class AppConstants {
   static const String baseUrl = 'https://raw.githubusercontent.com';
+  static const String usersAssetPath = 'assets/data/users.json';
   static const String countriesEndpoint = '/PouriaMoradi021/countries-api/refs/heads/main/countries.json';
   static const String countriesUrl = '$baseUrl$countriesEndpoint';
   static const String fetchDataError = 'خطا در دریافت اطلاعات';

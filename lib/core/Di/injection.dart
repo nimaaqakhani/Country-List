@@ -1,9 +1,11 @@
+// lib/core/injection.dart
 import 'package:dio/dio.dart';
+import 'package:flutter_application_1/features/Auth/data/datasources/auth_remote_data_source.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/core/services/api_service.dart';
-import 'package:flutter_application_1/features/Auth/data/datasources/auth_remote_data_source.dart'; // اضافه کن
-import 'package:flutter_application_1/features/Auth/data/repositories/auth_repository_impl.dart'; // اضافه کن
+import 'package:flutter_application_1/core/services/asset_service.dart';
+import 'package:flutter_application_1/features/Auth/data/repositories/auth_repository_impl.dart';
 import 'package:flutter_application_1/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:flutter_application_1/features/Auth/domain/usecases/login.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.dart';
@@ -18,20 +20,16 @@ final GetIt getIt = GetIt.instance;
 class Injection {
   static void init() {
     getIt.registerLazySingleton<http.Client>(() => http.Client());
-
     getIt.registerLazySingleton<Dio>(() => Dio(BaseOptions(
           connectTimeout: const Duration(seconds: 10),
           receiveTimeout: const Duration(seconds: 10),
         )));
 
-    // Auth Feature
-    getIt.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(getIt<http.Client>()),
-    );
+    getIt.registerLazySingleton<AssetService>(() => AssetService());
+    getIt.registerLazySingleton<AuthApi>(() => AuthApi(getIt<AssetService>()));
     getIt.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(),
+      () => AuthRepositoryImpl(getIt<AuthApi>()),
     );
-
     getIt.registerLazySingleton<Login>(
       () => Login(getIt<AuthRepository>()),
     );

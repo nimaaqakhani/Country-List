@@ -4,7 +4,6 @@ import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_event.dart';
 import 'package:flutter_application_1/features/Auth/presentation/utils/auth_validator.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/custom_text_field.dart';
-import 'package:flutter_application_1/features/Auth/presentation/widgets/login_button.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/login_status.dart';
 
 class SimpleLoginContent extends StatefulWidget {

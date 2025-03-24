@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      routerConfig: AppRouter.router, 
+      routerConfig: AppRouter.router,
     );
   }
 }
