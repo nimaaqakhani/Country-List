@@ -1,4 +1,3 @@
-// lib/core/router/app_router.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/core/Di/injection.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.dart';
@@ -14,35 +13,35 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: '/login-selector',
+    initialLocation: '/splash', // تغییر به splash
     routes: [
-      GoRoute(
-        path: '/login-selector',
-        builder: (context, state) => const LoginSelectorScreen(),
-      ),
       GoRoute(
         path: '/splash',
         builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
+        path: '/login-selector',
+        builder: (context, state) => const LoginSelectorScreen(),
+      ),
+      GoRoute(
         path: '/login/simple',
-        builder: (context, state) => SimpleLoginScreen(
-          successRoute: '/home',
-          authBloc: getIt<AuthBloc>(),
+        builder: (context, state) => BlocProvider<AuthBloc>(
+          create: (context) => getIt<AuthBloc>(),
+          child: const SimpleLoginScreen(successRoute: '/home'),
         ),
       ),
       GoRoute(
         path: '/login/modern',
-        builder: (context, state) => ModernLoginScreen(
-          successRoute: '/home',
-          authBloc: getIt<AuthBloc>(),
+        builder: (context, state) => BlocProvider<AuthBloc>(
+          create: (context) => getIt<AuthBloc>(),
+          child: const ModernLoginScreen(successRoute: '/home'),
         ),
       ),
       GoRoute(
         path: '/login/advanced',
-        builder: (context, state) => AdvancedLoginScreen(
-          successRoute: '/home',
-          authBloc: getIt<AuthBloc>(),
+        builder: (context, state) => BlocProvider<AuthBloc>(
+          create: (context) => getIt<AuthBloc>(),
+          child: const AdvancedLoginScreen(successRoute: '/home'),
         ),
       ),
       GoRoute(

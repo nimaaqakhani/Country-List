@@ -11,20 +11,30 @@ class LoginStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthBloc, AuthState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         state.maybeWhen(
-          success: () => context.go(successRoute),
+          success: () {
+            // نمایش SnackBar موفقیت
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text(
+                  'ورود موفقیت‌آمیز بود! خوش اومدی 🎉',
+                  style: TextStyle(fontSize: 16),
+                ),
+                backgroundColor: Colors.green,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+            // هدایت به صفحه‌ی بعدی
+            context.go(successRoute);
+          },
           orElse: () {},
         );
       },
-      builder: (context, state) {
-        return state.maybeWhen(
-          success: () => const Text('Login successful!', style: TextStyle(color: Colors.green)),
-          error: (message) => Text(message, style: const TextStyle(color: Colors.red)),
-          orElse: () => const SizedBox.shrink(),
-        );
-      },
+      child: const SizedBox.shrink(), 
     );
   }
 }
