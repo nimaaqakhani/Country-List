@@ -1,3 +1,4 @@
+// lib/features/Auth/presentation/screens/login_selector_screen.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,6 +29,7 @@ class LoginSelectorScreen extends StatelessWidget {
               onPressed: () => context.go('/login/advanced'),
               child: const Text('لاگین حرفه‌ای'),
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),

@@ -1,7 +1,9 @@
+// lib/features/Auth/presentation/screens/modern_login_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_event.dart';
+import 'package:flutter_application_1/features/Auth/presentation/utils/auth_validator.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/login_button.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/login_status.dart';
@@ -53,9 +55,8 @@ class _ModernLoginContent extends StatefulWidget {
   State<_ModernLoginContent> createState() => _ModernLoginContentState();
 }
 
-class _ModernLoginContentState extends State<_ModernLoginContent>
-    with SingleTickerProviderStateMixin {
-  final _formKey = GlobalKey<FormState>();
+class _ModernLoginContentState extends State<_ModernLoginContent> with SingleTickerProviderStateMixin {
+  final _validator = AuthValidator();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   late AnimationController _animationController;
@@ -65,6 +66,8 @@ class _ModernLoginContentState extends State<_ModernLoginContent>
   @override
   void initState() {
     super.initState();
+    _emailController.addListener(() => _validator.updateEmail(_emailController.text));
+    _passwordController.addListener(() => _validator.updatePassword(_passwordController.text));
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),
@@ -80,76 +83,83 @@ class _ModernLoginContentState extends State<_ModernLoginContent>
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ScaleTransition(
-            scale: _scaleAnimation,
-            child: Text(
-              'ورود به برنامه',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ),
-          const SizedBox(height: 32),
-          SlideTransition(
-            position: _slideAnimation,
-            child: Card(
-              elevation: 8,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    CustomTextField(
-                      controller: _emailController,
-                      labelText: 'ایمیل',
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) return 'لطفاً ایمیل را وارد کنید';
-                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) return 'ایمیل نامعتبر است';
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    CustomTextField(
-                      controller: _passwordController,
-                      labelText: 'رمز عبور',
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) return 'لطفاً رمز عبور را وارد کنید';
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 24),
-                    LoginButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<AuthBloc>().add(
-                                AuthEvent.login(_emailController.text, _passwordController.text),
-                              );
-                        }
-                      },
-                    ),
-                  ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ScaleTransition(
+          scale: _scaleAnimation,
+          child: Text(
+            'ورود به برنامه',
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
+          ),
+        ),
+        const SizedBox(height: 32),
+        SlideTransition(
+          position: _slideAnimation,
+          child: Card(
+            elevation: 8,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  StreamBuilder<String?>(
+                    stream: _validator.emailStream,
+                    builder: (context, snapshot) {
+                      return CustomTextField(
+                        controller: _emailController,
+                        labelText: 'ایمیل',
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) => snapshot.hasError ? snapshot.error.toString() : null,
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  StreamBuilder<String?>(
+                    stream: _validator.passwordStream,
+                    builder: (context, snapshot) {
+                      return CustomTextField(
+                        controller: _passwordController,
+                        labelText: 'رمز عبور',
+                        obscureText: true,
+                        validator: (value) => snapshot.hasError ? snapshot.error.toString() : null,
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  StreamBuilder<bool>(
+                    stream: _validator.isFormValid,
+                    initialData: false,
+                    builder: (context, snapshot) {
+                      return LoginButton(
+                        onPressed: snapshot.data == true
+                            ? () {
+                                context.read<AuthBloc>().add(
+                                      AuthEvent.login(_validator.email, _validator.password),
+                                    );
+                              }
+                            : null,
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          LoginStatus(successRoute: widget.successRoute),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16),
+        LoginStatus(successRoute: widget.successRoute),
+      ],
     );
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+    _validator.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();

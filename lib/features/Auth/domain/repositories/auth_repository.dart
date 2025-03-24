@@ -1,6 +1,4 @@
-import 'package:flutter_application_1/features/Auth/data/models/user_model.dart';
-
+// lib/features/Auth/domain/repositories/auth_repository.dart
 abstract class AuthRepository {
-  Future<List<UserModel>> getUsers();
-  bool validateCredentials(String email, String password);
+  Future<bool> login(String email, String password);
 }

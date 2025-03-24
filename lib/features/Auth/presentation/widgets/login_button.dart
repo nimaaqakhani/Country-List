@@ -1,12 +1,13 @@
+// lib/features/Auth/presentation/widgets/login_button.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_state.dart';
 
 class LoginButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed; // تغییر به nullable
 
-  const LoginButton({super.key, required this.onPressed});
+  const LoginButton({super.key, this.onPressed}); // required رو برداشتم
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class LoginButton extends StatelessWidget {
           loading: () => const CircularProgressIndicator(),
           orElse: () => ElevatedButton(
             onPressed: onPressed,
-            child: const Text('Login'),
+            child: const Text('ورود'),
           ),
         );
       },

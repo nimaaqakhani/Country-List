@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http; 
+import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/core/services/api_service.dart';
-import 'package:flutter_application_1/features/Auth/data/datasources/auth_remote_data_source.dart'; 
-import 'package:flutter_application_1/features/Auth/data/repositories/auth_repository_impl.dart'; 
-import 'package:flutter_application_1/features/Auth/domain/repositories/auth_repository.dart'; 
+import 'package:flutter_application_1/features/Auth/data/datasources/auth_remote_data_source.dart'; // اضافه کن
+import 'package:flutter_application_1/features/Auth/data/repositories/auth_repository_impl.dart'; // اضافه کن
+import 'package:flutter_application_1/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:flutter_application_1/features/Auth/domain/usecases/login.dart';
-import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.dart'; 
+import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application_1/features/GlobalCountries/data/datasources/country_remote_data_source.dart';
 import 'package:flutter_application_1/features/GlobalCountries/data/repositories/country_repository_impl.dart';
 import 'package:flutter_application_1/features/GlobalCountries/domain/repositories/country_repository.dart';
@@ -29,8 +29,9 @@ class Injection {
       () => AuthRemoteDataSourceImpl(getIt<http.Client>()),
     );
     getIt.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(getIt<AuthRemoteDataSource>()),
+      () => AuthRepositoryImpl(),
     );
+
     getIt.registerLazySingleton<Login>(
       () => Login(getIt<AuthRepository>()),
     );

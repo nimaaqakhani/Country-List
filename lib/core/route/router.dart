@@ -14,7 +14,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: '/login-selector', 
+    initialLocation: '/login-selector',
     routes: [
       GoRoute(
         path: '/login-selector',

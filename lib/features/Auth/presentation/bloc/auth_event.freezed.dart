@@ -36,17 +36,17 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoginEvent value) login,
+    required TResult Function(_Login value) login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoginEvent value)? login,
+    TResult? Function(_Login value)? login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginEvent value)? login,
+    TResult Function(_Login value)? login,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,22 +94,21 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
 }
 
 /// @nodoc
-abstract class _$$LoginEventImplCopyWith<$Res>
-    implements $AuthEventCopyWith<$Res> {
-  factory _$$LoginEventImplCopyWith(
-          _$LoginEventImpl value, $Res Function(_$LoginEventImpl) then) =
-      __$$LoginEventImplCopyWithImpl<$Res>;
+abstract class _$$LoginImplCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory _$$LoginImplCopyWith(
+          _$LoginImpl value, $Res Function(_$LoginImpl) then) =
+      __$$LoginImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String email, String password});
 }
 
 /// @nodoc
-class __$$LoginEventImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$LoginEventImpl>
-    implements _$$LoginEventImplCopyWith<$Res> {
-  __$$LoginEventImplCopyWithImpl(
-      _$LoginEventImpl _value, $Res Function(_$LoginEventImpl) _then)
+class __$$LoginImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$LoginImpl>
+    implements _$$LoginImplCopyWith<$Res> {
+  __$$LoginImplCopyWithImpl(
+      _$LoginImpl _value, $Res Function(_$LoginImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +117,7 @@ class __$$LoginEventImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(_$LoginEventImpl(
+    return _then(_$LoginImpl(
       null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -133,8 +132,8 @@ class __$$LoginEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoginEventImpl implements LoginEvent {
-  const _$LoginEventImpl(this.email, this.password);
+class _$LoginImpl implements _Login {
+  const _$LoginImpl(this.email, this.password);
 
   @override
   final String email;
@@ -150,7 +149,7 @@ class _$LoginEventImpl implements LoginEvent {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginEventImpl &&
+            other is _$LoginImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -162,8 +161,8 @@ class _$LoginEventImpl implements LoginEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginEventImplCopyWith<_$LoginEventImpl> get copyWith =>
-      __$$LoginEventImplCopyWithImpl<_$LoginEventImpl>(this, _$identity);
+  _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
+      __$$LoginImplCopyWithImpl<_$LoginImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -196,7 +195,7 @@ class _$LoginEventImpl implements LoginEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoginEvent value) login,
+    required TResult Function(_Login value) login,
   }) {
     return login(this);
   }
@@ -204,7 +203,7 @@ class _$LoginEventImpl implements LoginEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoginEvent value)? login,
+    TResult? Function(_Login value)? login,
   }) {
     return login?.call(this);
   }
@@ -212,7 +211,7 @@ class _$LoginEventImpl implements LoginEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginEvent value)? login,
+    TResult Function(_Login value)? login,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -222,9 +221,8 @@ class _$LoginEventImpl implements LoginEvent {
   }
 }
 
-abstract class LoginEvent implements AuthEvent {
-  const factory LoginEvent(final String email, final String password) =
-      _$LoginEventImpl;
+abstract class _Login implements AuthEvent {
+  const factory _Login(final String email, final String password) = _$LoginImpl;
 
   @override
   String get email;
@@ -232,6 +230,6 @@ abstract class LoginEvent implements AuthEvent {
   String get password;
   @override
   @JsonKey(ignore: true)
-  _$$LoginEventImplCopyWith<_$LoginEventImpl> get copyWith =>
+  _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

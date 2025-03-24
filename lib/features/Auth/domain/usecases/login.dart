@@ -1,3 +1,4 @@
+// lib/features/Auth/domain/usecases/login.dart
 import 'package:flutter_application_1/features/Auth/domain/repositories/auth_repository.dart';
 
 class Login {
@@ -6,7 +7,6 @@ class Login {
   Login(this.repository);
 
   Future<bool> call(String email, String password) async {
-    final users = await repository.getUsers();
-    return users.any((user) => user.email == email && user.password == password);
+    return await repository.login(email, password);
   }
 }

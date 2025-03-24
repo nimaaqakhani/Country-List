@@ -1,3 +1,4 @@
+// lib/features/Auth/presentation/bloc/auth_state.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_state.freezed.dart';

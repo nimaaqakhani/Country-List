@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "email": "testuser1@example.com",
+      "password": "Test@1234"
+    },
+    {
+      "email": "testuser2@example.com",
+      "password": "SecurePass!56"
+    },
+    {
+      "email": "testuser3@example.com",
+      "password": "MyStrongP@ss99"
+    }
+  ]
+}
