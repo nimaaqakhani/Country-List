@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: '/splash',  
+    initialLocation: '/splash',
     routes: [
       GoRoute(
         path: '/splash',
@@ -18,9 +18,9 @@ class AppRouter {
       ),
       GoRoute(
         path: '/login',
-        builder: (context, state) => BlocProvider<AuthBloc>(
-          create: (context) => getIt<AuthBloc>(),
-          child: const LoginScreen(),
+        builder: (context, state) => LoginScreen(
+          successRoute: '/home',
+          authBloc: getIt<AuthBloc>(),
         ),
       ),
       GoRoute(

@@ -1,4 +1,3 @@
-import 'package:flutter_application_1/features/Auth/data/models/user_model.dart';
 import 'package:flutter_application_1/features/Auth/domain/repositories/auth_repository.dart';
 
 class Login {
