@@ -24,6 +24,7 @@ dependencies:
   json_annotation: ^4.9.0
   path_provider: ^2.1.4
   shimmer: ^3.0.0
+  http: ^1.2.0
   
 
 dev_dependencies:
