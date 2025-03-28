@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/core/constant/app_constant.dart';
-import 'package:flutter_application_1/core/services/api_service.dart';
+import 'package:flutter_application_1/core/api/api_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/core/services/api_service.dart';
+import 'package:flutter_application_1/core/api/api_service.dart';
 import 'package:flutter_application_1/features/GlobalCountries/data/models/country_model.dart';
 
 class CountryApi {

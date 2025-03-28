@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/Di/injection.dart';
-import 'package:flutter_application_1/core/route/router.dart';
+import 'package:flutter_application_1/core/route/routes.dart';
 
 void main() {
   Injection.init();

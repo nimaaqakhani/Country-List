@@ -1,8 +1,10 @@
-// lib/features/Auth/presentation/bloc/auth_bloc.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_application_1/core/utils/remote_data_state.dart';
+import 'package:flutter_application_1/features/Auth/data/models/error_response_model.dart';
 import 'package:flutter_application_1/features/Auth/domain/usecases/login.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_event.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_state.dart';
+
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Login login;
 
@@ -13,13 +15,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(const AuthState.loading());
           try {
             final result = await login(email, password);
-            if (result) {
-              emit(const AuthState.success());
-            } else {
-              emit(const AuthState.error('ایمیل یا رمز عبور اشتباه است'));
-            }
+            result.fold(
+              (failure) => emit(AuthState.error(
+                  (failure as RemoteDataFailed<ErrorResponseModel>)
+                          .remoteData
+                          .message ??
+                      'خطا در ورود')),
+              (success) => emit(const AuthState.success()),
+            );
           } catch (e) {
-            emit(AuthState.error('خطا در ورود: $e'));
+            emit(AuthState.error('خطای ناشناخته: $e'));
           }
         },
       );

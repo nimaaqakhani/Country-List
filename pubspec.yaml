@@ -25,6 +25,7 @@ dependencies:
   path_provider: ^2.1.4
   shimmer: ^3.0.0
   http: ^1.2.0
+  dartz: ^0.10.1
   
 
 dev_dependencies:

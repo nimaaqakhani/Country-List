@@ -1,5 +1,16 @@
 import 'dart:ui';
 class AppConstants {
+  static const String splash = '/splash';
+  static const String loginSelector = '/login-selector';
+  static const String loginSimple = 'simple';
+  static const String loginModern = 'modern';
+  static const String loginAdvanced = 'advanced';
+  static const String loginBase = '/login';
+  static const String home = '/home';
+  static const String authBase = 'auth';
+  static const String authLogin = 'login';
+  static const String countryBase = 'countries';
+  static const String countryList = 'list';
   static const String baseUrl = 'https://raw.githubusercontent.com';
   static const String usersAssetPath = 'assets/data/users.json';
   static const String countriesEndpoint = '/PouriaMoradi021/countries-api/refs/heads/main/countries.json';

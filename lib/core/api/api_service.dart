@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/core/constant/app_constant.dart';
-import 'package:flutter_application_1/core/services/api_service_interface.dart';
+import 'package:flutter_application_1/core/api/api_service_interface.dart';
 import 'package:get_it/get_it.dart';
 class ApiService implements ApiServiceInterface {
   final Dio _dio = GetIt.instance<Dio>();
