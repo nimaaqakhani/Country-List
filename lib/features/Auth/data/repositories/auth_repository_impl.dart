@@ -1,53 +1,13 @@
-// lib/features/Auth/data/repositories/auth_repository_impl.dart
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_application_1/core/utils/remote_data_state.dart';
-import 'package:flutter_application_1/features/Auth/data/datasources/auth_remote_data_source.dart';
 import 'package:flutter_application_1/features/Auth/data/models/error_response_model.dart';
 import 'package:flutter_application_1/features/Auth/data/models/succeed_login_model.dart';
+import 'package:flutter_application_1/features/Auth/data/services/auth_remote_data_source.dart';
 import 'package:flutter_application_1/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-/// ## [AuthRepositoryImpl] Class Documentation
-///
-/// The [AuthRepositoryImpl] class implements the [AuthRepository] interface and provides the implementation for authenticating a user.
-///
-/// ### Usage:
-///
-/// The [AuthRepositoryImpl] class is used to authenticate users by making a request to the [AuthService].
-///
-/// ### Properties:
-///
-/// - [_service] : An instance of [AuthService] used to make the request.
-///
-/// ### Constructor:
-///
-/// The constructor takes an instance of [AuthService] as a parameter.
-///
-/// ### Methods:
-///
-/// - [login] : This method takes `email` and `password` as input and returns a [Future] containing either a [RemoteDataState] of [ErrorResponseModel] or [SucceedLoginModel].
-///
-/// ### Method Details:
-///
-/// #### `Future<Either<RemoteDataState<ErrorResponseModel>, RemoteDataState<SucceedLoginModel>>> login(String email, String password)`
-///
-/// This method authenticates a user by making a request to the [AuthService] with the provided `email` and `password`.
-/// It handles the response by checking the status code and parsing the data into either a [SucceedLoginModel] or an [ErrorResponseModel].
-/// It also handles various exceptions such as [http.ClientException], [TypeError], and other general exceptions, logging them and returning appropriate failure responses.
-///
-/// ### Example usage:
-/// ```dart
-/// final authService = AuthService(assetService);
-/// final repository = AuthRepositoryImpl(authService);
-/// final result = await repository.login(email: 'user@example.com', password: 'password123');
-///
-/// result.fold(
-///   (failure) => print('Error: ${failure.remoteData}'),
-///   (success) => print('Success: ${success.remoteData}'),
-/// );
-/// ```
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApi _authApi;
 

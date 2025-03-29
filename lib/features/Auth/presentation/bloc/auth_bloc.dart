@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/core/utils/remote_data_state.dart';
 import 'package:flutter_application_1/features/Auth/data/models/error_response_model.dart';
-import 'package:flutter_application_1/features/Auth/domain/usecases/login.dart';
+import 'package:flutter_application_1/features/Auth/domain/usecases/login_usecase.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_event.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final Login login;
+  final LoginUsecase login;
 
   AuthBloc(this.login) : super(const AuthState.initial()) {
     on<AuthEvent>((event, emit) async {

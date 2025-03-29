@@ -1,4 +1,3 @@
-// lib/core/router.dart
 import 'package:flutter_application_1/core/constant/auth_bloc_providers.dart';
 import 'package:flutter_application_1/core/constant/country_bloc_providers.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

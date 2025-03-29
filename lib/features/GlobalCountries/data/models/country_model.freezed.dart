@@ -22,8 +22,8 @@ CountryModel _$CountryModelFromJson(Map<String, dynamic> json) {
 mixin _$CountryModel {
   String get name => throw _privateConstructorUsedError;
   String get capital => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   String get flag => throw _privateConstructorUsedError;
-  String? get code => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $CountryModelCopyWith<$Res> {
           CountryModel value, $Res Function(CountryModel) then) =
       _$CountryModelCopyWithImpl<$Res, CountryModel>;
   @useResult
-  $Res call({String name, String capital, String flag, String? code});
+  $Res call({String name, String capital, String code, String flag});
 }
 
 /// @nodoc
@@ -55,8 +55,8 @@ class _$CountryModelCopyWithImpl<$Res, $Val extends CountryModel>
   $Res call({
     Object? name = null,
     Object? capital = null,
+    Object? code = null,
     Object? flag = null,
-    Object? code = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -67,14 +67,14 @@ class _$CountryModelCopyWithImpl<$Res, $Val extends CountryModel>
           ? _value.capital
           : capital // ignore: cast_nullable_to_non_nullable
               as String,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       flag: null == flag
           ? _value.flag
           : flag // ignore: cast_nullable_to_non_nullable
               as String,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -87,7 +87,7 @@ abstract class _$$CountryModelImplCopyWith<$Res>
       __$$CountryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String capital, String flag, String? code});
+  $Res call({String name, String capital, String code, String flag});
 }
 
 /// @nodoc
@@ -103,8 +103,8 @@ class __$$CountryModelImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? capital = null,
+    Object? code = null,
     Object? flag = null,
-    Object? code = freezed,
   }) {
     return _then(_$CountryModelImpl(
       name: null == name
@@ -115,14 +115,14 @@ class __$$CountryModelImplCopyWithImpl<$Res>
           ? _value.capital
           : capital // ignore: cast_nullable_to_non_nullable
               as String,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       flag: null == flag
           ? _value.flag
           : flag // ignore: cast_nullable_to_non_nullable
               as String,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -133,8 +133,8 @@ class _$CountryModelImpl implements _CountryModel {
   const _$CountryModelImpl(
       {required this.name,
       required this.capital,
-      required this.flag,
-      this.code});
+      required this.code,
+      required this.flag});
 
   factory _$CountryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CountryModelImplFromJson(json);
@@ -144,13 +144,13 @@ class _$CountryModelImpl implements _CountryModel {
   @override
   final String capital;
   @override
-  final String flag;
+  final String code;
   @override
-  final String? code;
+  final String flag;
 
   @override
   String toString() {
-    return 'CountryModel(name: $name, capital: $capital, flag: $flag, code: $code)';
+    return 'CountryModel(name: $name, capital: $capital, code: $code, flag: $flag)';
   }
 
   @override
@@ -160,13 +160,13 @@ class _$CountryModelImpl implements _CountryModel {
             other is _$CountryModelImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.capital, capital) || other.capital == capital) &&
-            (identical(other.flag, flag) || other.flag == flag) &&
-            (identical(other.code, code) || other.code == code));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.flag, flag) || other.flag == flag));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, capital, flag, code);
+  int get hashCode => Object.hash(runtimeType, name, capital, code, flag);
 
   @JsonKey(ignore: true)
   @override
@@ -186,8 +186,8 @@ abstract class _CountryModel implements CountryModel {
   const factory _CountryModel(
       {required final String name,
       required final String capital,
-      required final String flag,
-      final String? code}) = _$CountryModelImpl;
+      required final String code,
+      required final String flag}) = _$CountryModelImpl;
 
   factory _CountryModel.fromJson(Map<String, dynamic> json) =
       _$CountryModelImpl.fromJson;
@@ -197,9 +197,9 @@ abstract class _CountryModel implements CountryModel {
   @override
   String get capital;
   @override
-  String get flag;
+  String get code;
   @override
-  String? get code;
+  String get flag;
   @override
   @JsonKey(ignore: true)
   _$$CountryModelImplCopyWith<_$CountryModelImpl> get copyWith =>

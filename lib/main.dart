@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/core/Di/injection.dart';
+import 'package:flutter_application_1/core/di/injection.dart';
 import 'package:flutter_application_1/core/route/routes.dart';
 
 void main() {

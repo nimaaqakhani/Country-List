@@ -1,4 +1,3 @@
-// lib/core/utils/remote_data_state.dart
 abstract class RemoteDataState<T> {
   const RemoteDataState();
 }

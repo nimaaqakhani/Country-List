@@ -1,3 +1,4 @@
+// lib/features/GlobalCountries/data/models/country_model.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'country_model.freezed.dart';
@@ -8,8 +9,8 @@ class CountryModel with _$CountryModel {
   const factory CountryModel({
     required String name,
     required String capital,
+    required String code,
     required String flag,
-    String? code, 
   }) = _CountryModel;
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => _$CountryModelFromJson(json);

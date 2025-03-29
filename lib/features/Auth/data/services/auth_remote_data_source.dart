@@ -23,8 +23,6 @@ import 'package:http/http.dart' as http;
 /// Use this class to fetch user data for authentication purposes. It simulates an API call by loading data from a local asset.
 ///
 // lib/features/Auth/data/datasources/auth_remote_data_source.dart
-import 'package:flutter_application_1/core/api/asset_service.dart';
-import 'package:flutter_application_1/features/Auth/data/models/succeed_login_model.dart';
 
 class AuthApi {
   final AssetService _assetService;
