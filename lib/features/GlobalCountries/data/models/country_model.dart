@@ -1,4 +1,3 @@
-// lib/features/GlobalCountries/data/models/country_model.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'country_model.freezed.dart';

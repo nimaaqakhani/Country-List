@@ -1,13 +1,12 @@
-// lib/features/Auth/presentation/widgets/login_button.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_state.dart';
 
 class LoginButton extends StatelessWidget {
-  final VoidCallback? onPressed; // تغییر به nullable
+  final VoidCallback? onPressed; 
 
-  const LoginButton({super.key, this.onPressed}); // required رو برداشتم
+  const LoginButton({super.key, this.onPressed}); 
 
   @override
   Widget build(BuildContext context) {

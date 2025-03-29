@@ -15,7 +15,6 @@ class LoginStatus extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           success: () {
-            // نمایش SnackBar موفقیت
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: const Text(
@@ -28,7 +27,6 @@ class LoginStatus extends StatelessWidget {
                 duration: const Duration(seconds: 2),
               ),
             );
-            // هدایت به صفحه‌ی بعدی
             context.go(successRoute);
           },
           orElse: () {},

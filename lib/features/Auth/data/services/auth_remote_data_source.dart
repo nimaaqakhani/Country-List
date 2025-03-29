@@ -1,28 +1,7 @@
-// lib/features/Auth/data/services/auth_service.dart
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_application_1/core/api/asset_service.dart';
 import 'package:http/http.dart' as http;
-
-/// [AuthService] : A service class responsible for handling authentication requests.
-///
-/// This class uses [AssetService] to load user data from a local JSON file and simulates
-/// an HTTP response for compatibility with the repository layer.
-///
-/// ### Methods:
-///
-/// - [request] :
-///   - Simulates an authentication request by loading user data from a local JSON asset.
-///   - Parameters:
-///     - `email` : The user's email address.
-///     - `password` : The user's password.
-///   - Returns: A `Future` that resolves to an [http.Response] containing the user data or an error.
-///
-/// ### Usage:
-///
-/// Use this class to fetch user data for authentication purposes. It simulates an API call by loading data from a local asset.
-///
-// lib/features/Auth/data/datasources/auth_remote_data_source.dart
 
 class AuthApi {
   final AssetService _assetService;
