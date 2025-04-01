@@ -1,6 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/GlobalCountries/data/models/country_model.dart';
 
+/// [CountryItem] : A stateless widget that displays information for a single country.
+///
+/// This widget renders a card containing details of a country, such as its flag, name, capital,
+/// and code (if available), based on a provided [CountryModel]. It is designed to be used within
+/// a list, such as in the [CountryList] widget.
+///
+/// ### Properties:
+///
+/// - `country` :
+///   - **Type**: [CountryModel]
+///   - **Description**: The country data to be displayed, required for rendering the widget.
+///
+/// ### Methods:
+///
+/// - [build] :
+///   - **Parameters**: `context` - The [BuildContext] for building the widget.
+///   - **Returns**: A [Card] widget containing a [ListTile] with the country's details.
+///   - **Behavior**: Constructs a card with a flag image, name, capital, and code (if present), styled for visual appeal.
+///
+/// ### UI Components:
+///
+/// - **Card**: A container with rounded corners and elevation for a raised effect.
+/// - **ListTile**: Displays the country details in a structured layout:
+///   - **Flag**: An [Image.network] widget showing the country's flag, with an error fallback.
+///   - **Name**: A bold [Text] widget displaying the country's name.
+///   - **Capital**: A [Text] widget showing the capital, styled in grey.
+///   - **Code**: An optional [Text] widget showing the country code, styled in grey, displayed only if available.
+///
+/// ### Usage:
+///
+/// Use this widget to display individual country information within a list. It takes a [CountryModel]
+/// as input and presents the data in a visually appealing card format, with error handling for the flag image.
+///
 class CountryItem extends StatelessWidget {
   final CountryModel country;
 
