@@ -6,6 +6,25 @@ import 'package:flutter_application_1/features/Auth/presentation/utils/auth_vali
 import 'package:flutter_application_1/features/Auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/login_status.dart';
 
+/// [ModernLoginContent] : A modern login form that includes email and password fields with animations.
+///
+/// This widget displays a login form with email and password input fields. The form includes validation
+/// for both fields and animates the entrance of the form elements. It listens to authentication state changes
+/// and triggers a login event when the form is valid.
+///
+/// ### Properties:
+/// - `successRoute`: A string representing the route to navigate to after a successful login.
+///
+/// ### Animations:
+/// - **Scale Animation**: Used to animate the title (`ورود به برنامه`) scaling into view.
+/// - **Slide Animation**: Used to animate the card containing the login form sliding into view.
+///
+/// ### Example usage:
+/// ```dart
+/// ModernLoginContent(successRoute: '/home');
+/// ```
+///
+/// This widget is typically used when a modern UI for login is needed, with animated transitions and form validation.
 class ModernLoginContent extends StatefulWidget {
   final String successRoute;
 
@@ -66,7 +85,7 @@ class _ModernLoginContentState extends State<ModernLoginContent> with SingleTick
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  StreamBuilder<String?>(
+                  StreamBuilder<String?>( 
                     stream: _validator.emailStream,
                     builder: (context, snapshot) {
                       return CustomTextField(
@@ -78,7 +97,7 @@ class _ModernLoginContentState extends State<ModernLoginContent> with SingleTick
                     },
                   ),
                   const SizedBox(height: 16),
-                  StreamBuilder<String?>(
+                  StreamBuilder<String?>( 
                     stream: _validator.passwordStream,
                     builder: (context, snapshot) {
                       return CustomTextField(
@@ -91,25 +110,25 @@ class _ModernLoginContentState extends State<ModernLoginContent> with SingleTick
                   ),
                   const SizedBox(height: 24),
                   StreamBuilder<bool>(
-            stream: _validator.isFormValid,
-            initialData: false,
-            builder: (context, snapshot) {
-              return FilledButton(
-                onPressed: snapshot.data == true
-                    ? () {
-                        context.read<AuthBloc>().add(
-                              AuthEvent.login(_validator.email, _validator.password),
-                            );
-                      }
-                    : null,
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                child: const Text('ورود'),
-              );
-            },
-          ),
+                    stream: _validator.isFormValid,
+                    initialData: false,
+                    builder: (context, snapshot) {
+                      return FilledButton(
+                        onPressed: snapshot.data == true
+                            ? () {
+                                context.read<AuthBloc>().add(
+                                      AuthEvent.login(_validator.email, _validator.password),
+                                    );
+                              }
+                            : null,
+                        style: FilledButton.styleFrom(
+                          minimumSize: const Size(double.infinity, 50),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        child: const Text('ورود'),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

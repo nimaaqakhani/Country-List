@@ -4,6 +4,22 @@ import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_bloc.
 import 'package:flutter_application_1/features/Auth/presentation/bloc/auth_state.dart';
 import 'package:go_router/go_router.dart';
 
+/// [LoginStatus] : A widget that listens for authentication state changes and shows a success message.
+///
+/// This widget listens to the authentication state through a [BlocListener] and triggers a success message
+/// when the user logs in successfully. It displays a snackbar with a success message and redirects the user to
+/// a specified route upon successful login.
+///
+/// ### Properties:
+/// - `successRoute`: A string representing the route to navigate to after a successful login.
+///
+/// ### Example usage:
+/// ```dart
+/// LoginStatus(successRoute: '/home');
+/// ```
+///
+/// The `LoginStatus` widget listens for changes in the [AuthBloc] and will trigger the snackbar and route change
+/// when the `AuthState.success()` event occurs.
 class LoginStatus extends StatelessWidget {
   final String successRoute;
 
@@ -32,7 +48,7 @@ class LoginStatus extends StatelessWidget {
           orElse: () {},
         );
       },
-      child: const SizedBox.shrink(), 
+      child: const SizedBox.shrink(),
     );
   }
 }

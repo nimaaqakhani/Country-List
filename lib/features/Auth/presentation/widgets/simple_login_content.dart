@@ -6,6 +6,21 @@ import 'package:flutter_application_1/features/Auth/presentation/utils/auth_vali
 import 'package:flutter_application_1/features/Auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/login_status.dart';
 
+/// [SimpleLoginContent] : A simple login form with email and password fields.
+///
+/// This widget provides a basic login form with email and password input fields. It includes form validation
+/// for both fields and triggers the login process when the form is valid. The login status is managed using the
+/// [AuthBloc] and the form displays an appropriate message on success.
+///
+/// ### Properties:
+/// - `successRoute`: The route to navigate to upon successful login.
+///
+/// ### Example usage:
+/// ```dart
+/// SimpleLoginContent(successRoute: '/home');
+/// ```
+///
+/// This widget is suitable for applications where a straightforward login form is needed without animations.
 class SimpleLoginContent extends StatefulWidget {
   final String successRoute;
 
@@ -56,26 +71,26 @@ class _SimpleLoginContentState extends State<SimpleLoginContent> {
           },
         ),
         const SizedBox(height: 24),
-     StreamBuilder<bool>(
-            stream: _validator.isFormValid,
-            initialData: false,
-            builder: (context, snapshot) {
-              return FilledButton(
-                onPressed: snapshot.data == true
-                    ? () {
-                        context.read<AuthBloc>().add(
-                              AuthEvent.login(_validator.email, _validator.password),
-                            );
-                      }
-                    : null,
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                child: const Text('ورود'),
-              );
-            },
-          ),
+        StreamBuilder<bool>(
+          stream: _validator.isFormValid,
+          initialData: false,
+          builder: (context, snapshot) {
+            return FilledButton(
+              onPressed: snapshot.data == true
+                  ? () {
+                      context.read<AuthBloc>().add(
+                            AuthEvent.login(_validator.email, _validator.password),
+                          );
+                    }
+                  : null,
+              style: FilledButton.styleFrom(
+                minimumSize: const Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+              child: const Text('ورود'),
+            );
+          },
+        ),
         const SizedBox(height: 16),
         LoginStatus(successRoute: widget.successRoute),
       ],

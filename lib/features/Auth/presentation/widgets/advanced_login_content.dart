@@ -6,6 +6,20 @@ import 'package:flutter_application_1/features/Auth/presentation/utils/auth_vali
 import 'package:flutter_application_1/features/Auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_application_1/features/Auth/presentation/widgets/login_status.dart';
 
+/// [AdvancedLoginContent] : A stateful widget for the advanced login screen.
+///
+/// This widget manages the advanced login UI, including email and password inputs, as well as the 
+/// form validation for those fields using the [AuthValidator] class. It listens to changes in the 
+/// email and password fields and updates the validation state accordingly. If both fields are valid, 
+/// the login button becomes enabled, allowing the user to submit their credentials. It also handles 
+/// the password visibility toggle and displays appropriate error messages when validation fails.
+///
+/// ### Properties:
+/// - `successRoute`: The route to navigate to upon successful login.
+///
+/// ### Methods:
+/// - `initState()`: Sets up listeners for the email and password fields to update the validator.
+/// - `dispose()`: Disposes of the controllers and the validator to prevent memory leaks.
 class AdvancedLoginContent extends StatefulWidget {
   final String successRoute;
 

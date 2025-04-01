@@ -8,9 +8,34 @@ import 'package:flutter_application_1/features/Auth/domain/repositories/auth_rep
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+/// [AuthRepositoryImpl] : Implementation of the [AuthRepository] interface for handling authentication.
+///
+/// This class provides an implementation for the login process by communicating with the [AuthApi].
+/// It returns either a success response containing user details or an error response in case of failure.
+///
+/// ### Dependencies:
+/// - [AuthApi]: The remote data source for authentication requests.
+///
+/// ### Methods:
+///
+/// - [login]:
+///   - **Parameters**:
+///     - `email`: User's email for authentication.
+///     - `password`: User's password for authentication.
+///   - **Returns**: 
+///     - `Either<RemoteDataState<ErrorResponseModel>, RemoteDataState<SucceedLoginModel>>`
+///     - Returns a success response if login is valid, otherwise an error response.
+///
+/// ### Exception Handling:
+///
+/// - Handles network errors (`http.ClientException`).
+/// - Manages incorrect data type errors (`TypeError`).
+/// - Catches unknown errors and logs them using [debugPrint].
+///
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApi _authApi;
 
+  /// Constructor for [AuthRepositoryImpl], requiring an instance of [AuthApi].
   AuthRepositoryImpl(this._authApi);
 
   @override
